@@ -1,0 +1,16 @@
+<launch>
+
+    <arg name="project" default="liorf_localization"/>
+    
+    <!-- Parameters -->
+    <rosparam file="$(find liorf_localization)/config/localization.yaml" command="load" />
+
+    <node pkg="rs_to_velodyne" type="rs_to_velodyne" name="rs_to_velodyne" output="screen" args="XYZIRT XYZIRT"/>
+
+    <!--- LOAM -->
+    <include file="$(find liorf_localization)/launch/include/module_loam.launch" />
+
+    <!--- Run Rviz-->
+    <include file="$(find liorf_localization)/launch/include/module_rviz.launch" />
+
+</launch>
